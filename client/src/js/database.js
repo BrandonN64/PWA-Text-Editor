@@ -1,5 +1,4 @@
 import { openDB } from 'idb';
-
 const initdb = async () =>
   openDB('jate', 1, {
     upgrade(db) {
@@ -11,17 +10,12 @@ const initdb = async () =>
       console.log('jate database created');
     },
   });
-
-// TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) => {
   const jate = await openDB('jate', 1)
   const readWrite = jate.readWrite('jate','readwrite')
   const store = readWrite.objectStore('jate')
   const add = store.add({value: content})
-  const endResult = await add;
 }
-
-// TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
   const jate = await openDB('jate',1)
   const readOnly = jate.readOnly('jate','readonly')
